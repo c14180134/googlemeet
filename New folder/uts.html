@@ -1,0 +1,172 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>My Page</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+</head> 
+<script>
+    $(document).ready(function(){
+		$("#kkk").click(function(){
+
+            var tim=parseFloat($("#waktu").val())
+            var pinj=parseFloat($("#pinjaman").val())
+            var cicilan=0;
+            var x=0
+            if(tim <= 6 && tim >= 1){
+                cicilan = 2;
+            }else if(tim > 6 && tim <= 12){
+                cicilan = 1.5;
+            }
+            else if(tim > 12){
+                cicilan = 1;
+            }
+
+            var res = pinj + (pinj * (cicilan/100) * tim);
+            x=x+res
+            $("#result").text(res);
+            $("#totaly").text(x);
+            
+        
+			$("#table").find('tbody')
+                .append($('<tr>')
+                    .append($('<td>')
+                        .append($('#pinjaman').val())
+        )
+        .append($('<td>')
+                        .append($('#waktu').val())
+        )
+        .append($('<td>')
+                        .append(res)
+        )
+        
+            
+    );
+    $("#table1").find('tbody')
+                .append($('<tr>')
+                    .append($('<td>')
+                        .append($('#pinjaman').val())
+        )
+        .append($('<td>')
+                        .append($('#waktu').val())
+        )
+        .append($('<td>')
+                        .append(res)
+        )
+        
+            
+    );
+		});
+	});
+
+    
+</script>
+
+<body> 
+    <div data-role="page" id="home">
+
+        <div data-role="header">
+            <h1>PPM</h1>
+            
+        </div>
+    
+        <div role="main" class="ui-content">	
+            
+            <form>
+                <label for="text-18">Pinjaman: </label> 
+                <a href="#popupInfo" data-rel="popup" data-transition="pop">Learn more</a>
+                    <div data-role="popup" id="popupInfo" class="ui-content" style="max-width:350px">
+                          <p>Tolong diisi menggunakan <strong>Angka dan tidak boleh kosong</strong></p>
+                    </div>
+                <input type="text" id="pinjaman">
+                <label for="text-18">Waktu Pinjaman:</label>
+                <input type="text" id="waktu">
+                Result:<div id="result"> </div>
+                <input type="button" data-inline="true" value="Input" id="kkk">
+                    
+            </form>
+            
+            <table data-role="table" class="ui-responsive" id="table">
+                <thead>
+                  <tr>
+                    <th>Pinjaman</th>
+                    <th>Waktu pinjam</th>
+                    <th>Pengembalian</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                    
+                </tbody>
+              </table>
+            
+            
+          
+        </div>
+    
+        <div data-position="fixed" data-role="footer" data-theme="a">
+            <div data-role="navbar" data-iconpos="bottom">
+                <ul>
+                    
+                    <li><a href="#kedua" data-icon="arrow-r">Information</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+    
+    <div data-role = "page" id = "kedua">
+ 
+        <div data-role="header"  data-add-back-btn = "true" data-back-btn-text = "Previous">
+
+            <h1>Information</h1>
+            
+        </div>
+        
+        <div id="one" class="ui-body-d ui-content">
+            <table data-role="table" class="ui-responsive" id="table1">
+                <thead>
+                  <tr>
+                    <th>Pinjaman</th>
+                    <th>Waktu pinjam</th>
+                    <th>Pengembalian</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                    
+                </tbody>
+              </table>
+
+              Yang harus Dilunasi<div id="totaly"> </div>
+              <input type="button" data-inline="true" value="Total" id="total">
+
+        
+            </div>
+            <script>
+                $( document ).on( "pageinit", "#aboutPage", function( event ) {
+                        alert( "Detail total" );
+                });
+               
+            </script>
+       
+       
+       
+       
+        <div data-position="fixed" data-role="footer" data-theme="a">
+            <div data-role="navbar" data-iconpos="bottom">
+                <ul>
+                    <li><a href="#home" data-icon="home">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
